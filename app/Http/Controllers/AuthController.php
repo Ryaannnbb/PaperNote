@@ -94,7 +94,7 @@ class AuthController extends Controller
             }
         }
 
-        return redirect()->back()->withInput($request->except('password'))->withErrors(['password' => 'Invalid credentials']);
+        return redirect()->back()->withInput($request->except('password'))->withErrors(['password' => 'Akun anda belum terdaftar!']);
 
     }
 
