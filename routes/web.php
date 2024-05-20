@@ -20,7 +20,7 @@ use App\Http\Middleware\RedirectMiddleware;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::middleware([RedirectMiddleware::class])->group(function () {
