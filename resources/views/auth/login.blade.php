@@ -12,15 +12,15 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Small Hotel</title>
+    <title>Paper Note</title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/hotel10.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/icon.png') }}">
     <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
     <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/mstile-150x150.png') }}">
     <meta name="theme-color" content="#ffffff">
@@ -87,7 +87,7 @@
                 <div class="row align-items-center gx-0 gy-7">
                   <div class="col-auto bg-100 dark__bg-1100 rounded-3 position-relative auth-title-box">
                     <div class="bg-holder auth-img-holder">
-                        <img src="{{ asset('assets/img/e-commerce/login - Copy.jpg') }}" class="auth-img rounded-3" alt="Authentication Image">
+                      <img src="{{ asset('assets/img/Notes-bro.png') }}" class="auth-img rounded-3" alt="Authentication Image">
                     </div>
                     <!--/.bg-holder-->
                     <div class="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 pb-md-7">
@@ -104,7 +104,7 @@
                   <div class="col mx-auto">
                     <div class="auth-form-box">
                       <div class="text-center mb-7"><a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html">
-                          <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="{{ asset('assets/img/brands/small.png') }}" alt="logo" width="58" /></div>
+                          <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img src="{{ asset('assets/img/icon.png') }}" alt="logo" width="58" /></div>
                         </a>
                         <h3 class="text-1000">Sign In</h3>
                         <p class="text-700">Get access to your account</p>
@@ -121,7 +121,7 @@
                             @enderror
                         </div>
                     </div>
-                      <div class="mb-3 text-start"><label class="form-label" for="password">Password</label>
+                    <div class="mb-3 text-start"><label class="form-label" for="password">Password</label>
                         <div class="form-icon-container"><input class="form-control form-icon-input @error('password') is-invalid @enderror" name="password" autocomplete="current-password" id="password" type="password" placeholder="Password" /><span class="fas fa-key text-900 fs--1 form-icon"></span>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -166,6 +166,7 @@
     <script src="{{ asset('vendors/dayjs/dayjs.min.js') }}"></script>
     <script src="{{ asset('assets/js/phoenix.js') }}"></script>
   </body>
+ 
 
 
 <!-- Mirrored from prium.github.io/phoenix/v1.13.0/pages/authentication/card/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Nov 2023 13:02:10 GMT -->

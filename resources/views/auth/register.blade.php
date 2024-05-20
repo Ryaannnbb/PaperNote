@@ -14,15 +14,15 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>Small Hotel</title>
+    <title>Paper Note</title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/hotel10.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/hotel10.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/icon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/icon.png') }}">
     <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
     <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/mstile-150x150.png') }}">
     <meta name="theme-color" content="#ffffff">
@@ -107,7 +107,7 @@
                                 <div
                                     class="col-auto bg-100 dark__bg-1100 rounded-3 position-relative auth-title-box">
                                     <div class="bg-holder auth-img-holder">
-                                        <img src="{{ asset('assets/img/e-commerce/register.jpg') }}" class="auth-img rounded-3" alt="Authentication Image">
+                                        <img src="{{ asset('assets/img/Add notes-bro.png') }}" class="auth-img rounded-3" alt="Authentication Image">
                                     </div>
                                     <!--/.bg-holder-->
                                     <div class="position-relative px-4 px-lg-7 pt-7 pb-7 pb-sm-5 text-center text-md-start pb-lg-7 card-sign-up">
@@ -126,7 +126,7 @@
                                                 class="d-flex flex-center text-decoration-none mb-4"
                                                 href="../../../index.html">
                                                 <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block" style="margin-top: 5px;">
-                                                    <img src="{{ asset('assets/img/brands/small.png') }}" alt="logo" width="58" />
+                                                    <img src="{{ asset('assets/img/icon.png') }}" alt="logo" width="58" />
                                                 </div>
                                             </a>
                                             <h3 class="text-1000">Sign Up</h3>
