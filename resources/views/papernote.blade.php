@@ -1,250 +1,370 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout_admin.app')
 
-<head>
-    <title>Elen - Free Bootstrap 4 Template by Colorlib</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('content')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}"
+            });
+        </script>
+    @endif
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+    <script>
+        var navbarTopShape = window.config.config.phoenixNavbarTopShape;
+        var navbarPosition = window.config.config.phoenixNavbarPosition;
+        var body = document.querySelector('body');
+        var navbarDefault = document.querySelector('#navbarDefault');
+        var navbarTop = document.querySelector('#navbarTop');
+        var topNavSlim = document.querySelector('#topNavSlim');
+        var navbarTopSlim = document.querySelector('#navbarTopSlim');
+        var navbarCombo = document.querySelector('#navbarCombo');
+        var navbarComboSlim = document.querySelector('#navbarComboSlim');
+        var dualNav = document.querySelector('#dualNav');
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+        var documentElement = document.documentElement;
+        var navbarVertical = document.querySelector('.navbar-vertical');
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+        if (navbarPosition === 'dual-nav') {
+            topNavSlim.remove();
+            navbarTop.remove();
+            navbarVertical.remove();
+            navbarTopSlim.remove();
+            navbarCombo.remove();
+            navbarComboSlim.remove();
+            navbarDefault.remove();
+            dualNav.removeAttribute('style');
+            documentElement.classList.add('dual-nav');
+        } else if (navbarTopShape === 'slim' && navbarPosition === 'vertical') {
+            navbarDefault.remove();
+            navbarTop.remove();
+            navbarTopSlim.remove();
+            navbarCombo.remove();
+            navbarComboSlim.remove();
+            topNavSlim.style.display = 'block';
+            navbarVertical.style.display = 'inline-block';
+            body.classList.add('nav-slim');
+        } else if (navbarTopShape === 'slim' && navbarPosition === 'horizontal') {
+            navbarDefault.remove();
+            navbarVertical.remove();
+            navbarTop.remove();
+            topNavSlim.remove();
+            navbarCombo.remove();
+            navbarComboSlim.remove();
+            navbarTopSlim.removeAttribute('style');
+            body.classList.add('nav-slim');
+        } else if (navbarTopShape === 'slim' && navbarPosition === 'combo') {
+            navbarDefault.remove();
+            //- navbarVertical.remove();
+            navbarTop.remove();
+            topNavSlim.remove();
+            navbarCombo.remove();
+            navbarTopSlim.remove();
+            navbarComboSlim.removeAttribute('style');
+            navbarVertical.removeAttribute('style');
+            body.classList.add('nav-slim');
+        } else if (navbarTopShape === 'default' && navbarPosition === 'horizontal') {
+            navbarDefault.remove();
+            topNavSlim.remove();
+            navbarVertical.remove();
+            navbarTopSlim.remove();
+            navbarCombo.remove();
+            navbarComboSlim.remove();
+            navbarTop.removeAttribute('style');
+            documentElement.classList.add('navbar-horizontal');
+        } else if (navbarTopShape === 'default' && navbarPosition === 'combo') {
+            topNavSlim.remove();
+            navbarTop.remove();
+            navbarTopSlim.remove();
+            navbarDefault.remove();
+            navbarComboSlim.remove();
+            navbarCombo.removeAttribute('style');
+            navbarVertical.removeAttribute('style');
+            documentElement.classList.add('navbar-combo')
 
-    <link rel="stylesheet" href="css/aos.css">
+        } else {
+            topNavSlim.remove();
+            navbarTop.remove();
+            navbarTopSlim.remove();
+            navbarCombo.remove();
+            navbarComboSlim.remove();
+            navbarDefault.removeAttribute('style');
+            navbarVertical.removeAttribute('style');
+        }
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+        var navbarTopStyle = window.config.config.phoenixNavbarTopStyle;
+        var navbarTop = document.querySelector('.navbar-top');
+        if (navbarTopStyle === 'darker') {
+            navbarTop.classList.add('navbar-darker');
+        }
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-    <div id="colorlib-page">
-        <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
-            <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-                <h1 id="colorlib-logo"><a href="index.html">elen<span>.</span></a></h1>
-                <nav id="colorlib-main-menu" role="navigation">
-                    <ul>
-                        <li class="colorlib-active"><a href="{{ route('papernote') }}">Home</a></li>
-                        <li><a href="{{ route('logout') }}">Logout</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-
-                <div class="colorlib-footer">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <ul>
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-instagram"></i></a></li>
-                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                    </ul>
+        var navbarVerticalStyle = window.config.config.phoenixNavbarVerticalStyle;
+        var navbarVertical = document.querySelector('.navbar-vertical');
+        if (navbarVerticalStyle === 'darker') {
+            navbarVertical.classList.add('navbar-darker');
+        }
+    </script>
+    <div class="content">
+        <nav class="mb-2" aria-label="breadcrumb">
+        </nav>
+        <nav class="mb-2" aria-label="breadcrumb">
+        </nav>
+        <div class="mb-9">
+            <div class="row g-3 mb-4">
+                <div class="col-auto">
+                    <h2 class="mb-0">Kamar</h2>
                 </div>
-            </aside> <!-- END COLORLIB-ASIDE -->
-        <div id="colorlib-main">
-            {{-- <div class="hero-wrap js-fullheight" style="background-image: url(images/bg_1.jpg);"
-                data-stellar-background-ratio="0.5">
-                <div class="overlay"></div>
-                <div class="js-fullheight d-flex justify-content-center align-items-center">
-                    <div class="col-md-8 text text-center">
-                        <div class="desc">
-                            <h2 class="subheading">Hello</h2>
-                            <h1 class="mb-4">{{ Auth::user()->name }}</h1>
-                            <p class="mb-4">I am A Blogger Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind texts. Separated they live in
-                                Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            <p><a href="#" class="btn-custom">More About Me <span
-                                        class="ion-ios-arrow-forward"></span></a></p>
+            </div>
+            <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
+                <li class="nav-item">
+                    <p class="nav-link active my-n2" aria-current="page"><span>Semua </span><span
+                            class="text-700 fw-semi-bold">
+                            @if ($papernote->count() > 0)
+                                <span>({{ $papernote->count() }})</span>
+                            @endif
+                        </span></p>
+                </li>
+            </ul>
+            <div id="products"
+                data-list='{"valueNames":["product","price","category","tags","vendor","time"],"page":5,"pagination":true}'>
+                <div class="mb-4">
+                    <div class="d-flex flex-wrap gap-3">
+                        <div class="search-box">
+                            <form class="position-relative" data-bs-toggle="search" data-bs-display="static">
+                                <input class="form-control search-input search" type="search" placeholder="Search rooms"
+                                    aria-label="Search" />
+                                <span class="fas fa-search search-box-icon"></span>
+                            </form>
+                        </div>
+                        <div class="scrollbar overflow-hidden-y">
+                            <div class="btn-group position-static" role="group">
+                                <div class="ms-xxl-auto">
+                                    <button class="btn btn-link text-900 me-4 px-0"></button>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">Tambah Catatan</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" style="display: none;"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form action="{{ route('papernote.store') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Tambah Catatan</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="exampleFormControlInput">Judul Catatan</label>
+                                                            <input class="form-control" id="exampleFormControlInput"
+                                                                type="text" name="judul" placeholder="Masukkan Judul Catatan">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label" for="customFile">Gambar (opsional)</label>
+                                                            <div id="imagePreview"></div>
+                                                            <div class="d-flex align-items-center flex-column">
+                                                                <input type="file" name="gambar" id="formFile" class="form-control   @error('gambar') is-invalid @enderror"
+                                                                value="{{ old('gambar') }}">
+                                                                <img class="mt-2" id="image-preview" src="#" alt="Preview" style="display: none; width: 50%; height: auto; border-radius: 5px">
+                                                            </div>
+                                                            <script>
+                                                                document.getElementById('formFile').addEventListener('change', function(e) {
+                                                                    const file = e.target.files[0];
+                                                                    const reader = new FileReader();
+                                                                    reader.onload = function(e) {
+                                                                        document.getElementById('image-preview').src = e.target.result;
+                                                                        document.getElementById('image-preview').style.display = 'block';
+                                                                    }
+                                                                    reader.readAsDataURL(file);
+                                                                });
+                                                            </script>
+                                                        </div>
+                                                        <div class="mb-0">
+                                                            <label class="form-label" for="exampleTextarea">Isi Catatan
+                                                            </label>
+                                                            <textarea class="form-control" id="exampleTextarea" rows="3" name="isi"> </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer"><button class="btn btn-primary"
+                                                            type="submit">Tambah</button><button class="btn btn-outline-primary"
+                                                            type="button" data-bs-dismiss="modal">Cancel</button></div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
-            <section class="ftco-section">
-                <div class="container">
-                    <div class="row justify-content-center mb-5 pb-2">
-                        <div class="col-md-7 heading-section text-center ftco-animate">
-                            <h2 class="subheading">Hello</h2>
-                            <h2 class="mb-4">{{ Auth::user()->name }}</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia. It is a paradisematic country.</p>
-                        </div>
-                    </div>
+
+                </thead>
+                <tbody class="list" id="products-table-body text-center">
+
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2"
-                                    style="background-image: url(images/image_1.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    {{-- <span class="category mb-3 d-block"><a href="#">Technology</a></span> --}}
-                                    {{-- <h3 class="mb-4">Title Note</h3> --}}
-                                    {{-- <p class="mb-4">Even the all-powerful Pointing has no control about the blind
-                                        texts it is an almost</p> --}}
-                                    {{-- <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img"
-                                            style="background-image: url(images/person_2.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <span>Written by</span>
-                                            <h3><a href="#">Dave Lewis</a>, <span>Nov. 28, 2018</span></h3>
+                        @foreach ($papernote as $papernotes)
+                            <div class="col-12 col-sm-6 col-md-4 col-xxl-2 room">
+                                <div class="card mb-3">
+                                    <div class="position-relative">
+                                        <div class="position-absolute top-0 end-0 m-2">
+                                            <div class="font-sans-serif btn-reveal-trigger position-static">
+                                                <button
+                                                    class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs--2"
+                                                    type="button" data-bs-toggle="dropdown" data-boundary="window"
+                                                    aria-haspopup="true" aria-expanded="false" data-bs-reference="parent">
+                                                    <span class="fas fa-ellipsis-h fs--2 text-white"></span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end py-2">
+                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $papernotes->id }}">Launch basic modal</button>
+                                                    <div class="modal fade" id="editModal{{ $papernotes->id }}" tabindex="-1" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
+                                                                </div>
+                                                            <div class="modal-body">
+                                                                <p class="text-700 lh-lg mb-0">This is a static modal example (meaning its position and display have been overridden). Included are the modal header, modal body (required for padding), and modal footer (optional). </p>
+                                                            </div>
+                                                                <div class="modal-footer"><button class="btn btn-primary" type="button">Okay</button><button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                    <form action="{{ route('papernote.destroy', $papernotes->id) }}"
+                                                        method="POST" class="hapus-form">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="button"
+                                                            class="dropdown-item text-danger hapus">Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> --}}
-                                    {{-- <div class="meta-wrap align-items-center">
-                                        <div class="half order-md-last">
-                                            <p class="meta">
-                                                <span><i class="icon-heart"></i>3</span>
-                                                <span><i class="icon-eye"></i>100</span>
-                                                <span><i class="icon-comment"></i>5</span>
+                                    </div>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $papernotes->id }}">
+                                    @if ($papernotes->gambar && $papernotes->gambar !== 'mynote.png')
+                                        <img class="card-img-top" src="{{ asset('storage/papernote/' . $papernotes->gambar) }}" style="object-fit: cover; height: 200px;">
+                                    @else
+                                        <img class="card-img-top" src="{{ asset('assets/img/products/details/mynote.png') }}" style="object-fit: cover; height: 200px;">
+                                    @endif
+                                    </a>
+                                    <div class="card-footer">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <h3 class="text-1100 mb-0">
+                                                {{ $papernotes->judul}}</h3>
+                                            <div class="flex-grow-1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="modal{{ $papernotes->id }}" tabindex="-1"
+                                aria-labelledby="modal{{ $papernotes->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal{{ $papernotes->id }}Label">
+                                                {{ $papernotes->nama_kamar }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Kategori:
+                                                {{ $papernotes->kategori ? $papernotes->kategori->nama_kategori : 'Tidak Ada Kategori' }}
                                             </p>
+                                            <p>Deskripsi:
+                                                {{ strip_tags(Str::limit($papernotes->deskripsi, 10, $end = '...')) }}</p>
                                         </div>
-                                        <div class="half">
-                                            <p><a href="#" class="btn py-2">Continue Reading <span
-                                                        class="ion-ios-arrow-forward"></span></a></p>
-                                        </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="blog-entry ftco-animate">
-                                <a href="#" class="img img-2"
-                                    style="background-image: url(images/image_2.jpg);"></a>
-                                <div class="text text-2 pt-2 mt-3">
-                                    {{-- <span class="category mb-3 d-block"><a href="#">Travel</a></span> --}}
-                                    <h3 class="mb-4"><a href="#">Title Note</a></h3>
-                                    {{-- <p class="mb-4">Even the all-powerful Pointing has no control about the blind
-                                        texts it is an almost</p> --}}
-                                    {{-- <div class="author mb-4 d-flex align-items-center">
-                                        <a href="#" class="img"
-                                            style="background-image: url(images/person_1.jpg);"></a>
-                                        <div class="ml-3 info">
-                                            <span>Written by</span>
-                                            <h3><a href="#">Dave Lewis</a>, <span>Nov. 28, 2018</span></h3>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="meta-wrap align-items-center">
-                                        <div class="half order-md-last">
-                                            <p class="meta">
-                                                <span><i class="icon-heart"></i>3</span>
-                                                <span><i class="icon-eye"></i>100</span>
-                                                <span><i class="icon-comment"></i>5</span>
-                                            </p>
-                                        </div>
-                                        <div class="half">
-                                            <p><a href="#" class="btn py-2">Continue Reading <span
-                                                        class="ion-ios-arrow-forward"></span></a></p>
-                                        </div>
-                                    </div> --}}
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                </div>
-            </section>
-            <footer class="ftco-footer ftco-bg-dark ftco-section">
-                <div class="container px-md-5">
-                    <div class="row mb-5">
-                        <div class="col-md">
-                            <div class="ftco-footer-widget mb-4 ml-md-4">
-                                <h2 class="ftco-heading-2">Category</h2>
-                                <ul class="list-unstyled categories">
-                                    <li><a href="#">Photography <span>(6)</span></a></li>
-                                    <li><a href="#">Fashion <span>(8)</span></a></li>
-                                    <li><a href="#">Technology <span>(2)</span></a></li>
-                                    <li><a href="#">Travel <span>(2)</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Archives</h2>
-                                <ul class="list-unstyled categories">
-                                    <li><a href="#">October 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">September 2018 <span>(6)</span></a></li>
-                                    <li><a href="#">August 2018 <span>(8)</span></a></li>
-                                    <li><a href="#">July 2018 <span>(2)</span></a></li>
-                                    <li><a href="#">June 2018 <span>(7)</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md">
-                            <div class="ftco-footer-widget mb-4">
-                                <h2 class="ftco-heading-2">Have a Questions?</h2>
-                                <div class="block-23 mb-3">
-                                    <ul>
-                                        <li><span class="icon icon-map-marker"></span><span class="text">203 Fake
-                                                St. Mountain View, San Francisco, California, USA</span></li>
-                                        <li><a href="#"><span class="icon icon-phone"></span><span
-                                                    class="text">+2 392 3929 210</span></a></li>
-                                        <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                    class="text">info@yourdomain.com</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var searchInput = document.querySelector('.search-input');
+                            searchInput.addEventListener('input', function() {
+                                var searchTerm = this.value.trim().toLowerCase();
+                                var rooms = document.querySelectorAll('.room');
 
-                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script> All rights reserved | This template is made with <i
-                                    class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                    target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div><!-- END COLORLIB-MAIN -->
-    </div><!-- END COLORLIB-PAGE -->
+                                rooms.forEach(function(room) {
+                                    var roomName = room.querySelector('.room-name').textContent.trim()
+                                        .toLowerCase();
 
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
-                stroke="#eeeeee" />
-            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4"
-                stroke-miterlimit="10" stroke="#F96D00" />
-        </svg></div>
+                                    if (roomName.includes(searchTerm)) {
+                                        room.style.display =
+                                            'block';
+                                    } else {
+                                        room.style.display =
+                                            'none';
+                                    }
+                                });
 
+                                if (searchTerm === '') {
+                                    rooms.forEach(function(room) {
+                                        room.style.display = 'block';
+                                    });
+                                }
+                            });
+                        });
+                    </script>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/jquery.animateNumber.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/jquery.timepicker.min.js"></script>
-    <script src="js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js/google-map.js"></script>
-    <script src="js/main.js"></script>
+                </tbody>
+                </table>
+            </div>
 
-</body>
+            <style>
+                .hr {
+                    margin-top: -2px;
+                }
 
-</html>
+                .ellipsis-text {
+                    max-width: 200px;
+                    /* Sesuaikan dengan lebar maksimum yang diinginkan */
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 14px;
+                    /* Sesuaikan dengan ukuran font yang diinginkan */
+                }
+
+                .room {
+                    transition: opacity 0.3s ease;
+                }
+            </style>
+            {{-- {{ END }} --}}
+            <script>
+                $('.hapus').click(function() {
+                    var form = $(this).closest('form');
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You will delete this product. This action cannot be undone!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, accept!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="footer position-absolute">
+        <div class="row g-0 justify-content-between align-items-center h-100">
+            <div class="col-12 col-sm-auto text-center">
+                <p class="mb-0 mt-2 mt-sm-0 text-900">Copyright © Small<span class="d-none d-sm-inline-block"></span><span
+                        class="d-none d-sm-inline-block mx-1">|</span><br class="d-sm-none" />2024</p>
+            </div>
+            <div class="col-12 col-sm-auto text-center">
+            </div>
+        </div>
+    </footer>
+    </div>
+@endsection

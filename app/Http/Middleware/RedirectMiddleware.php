@@ -19,7 +19,7 @@ class RedirectMiddleware
         if (Auth::check()) {
             if (Auth::user()->role === 'admin') {
                 if ($request->route()->getName() !== 'logout') {
-                    return redirect()->route('dashboard');
+                    return redirect()->route('papernote');
                 }
             } else if (Auth::user()->role === 'user') {
                 if ($request->route()->getName() !== 'logout') {
