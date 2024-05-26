@@ -113,7 +113,7 @@
         <div class="mb-9">
             <div class="row g-3 mb-4">
                 <div class="col-auto">
-                    <h2 class="mb-0">Kamar</h2>
+                    <h2 class="mb-0">Papernote</h2>
                 </div>
             </div>
             <ul class="nav nav-links mb-3 mb-lg-2 mx-n3">
@@ -146,7 +146,8 @@
                                     <div class="modal fade" id="exampleModal" tabindex="-1" style="display: none;"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
-                                            <form action="{{ route('papernote.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form action="{{ route('papernote.store') }}" method="POST"
+                                                enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -154,17 +155,23 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="exampleFormControlInput">Judul Catatan</label>
+                                                            <label class="form-label" for="exampleFormControlInput">Judul
+                                                                Catatan</label>
                                                             <input class="form-control" id="exampleFormControlInput"
-                                                                type="text" name="judul" placeholder="Masukkan Judul Catatan">
+                                                                type="text" name="judul"
+                                                                placeholder="Masukkan Judul Catatan">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label" for="customFile">Gambar (opsional)</label>
+                                                            <label class="form-label" for="customFile">Gambar
+                                                                (opsional)</label>
                                                             <div id="imagePreview"></div>
                                                             <div class="d-flex align-items-center flex-column">
-                                                                <input type="file" name="gambar" id="formFile" class="form-control   @error('gambar') is-invalid @enderror"
-                                                                value="{{ old('gambar') }}">
-                                                                <img class="mt-2" id="image-preview" src="#" alt="Preview" style="display: none; width: 50%; height: auto; border-radius: 5px">
+                                                                <input type="file" name="gambar" id="formFile"
+                                                                    class="form-control @error('gambar') is-invalid @enderror"
+                                                                    value="{{ old('gambar') }}">
+                                                                <img class="mt-2" id="image-preview" src="#"
+                                                                    alt="Preview"
+                                                                    style="display: none; width: 50%; height: auto; border-radius: 5px">
                                                             </div>
                                                             <script>
                                                                 document.getElementById('formFile').addEventListener('change', function(e) {
@@ -185,8 +192,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer"><button class="btn btn-primary"
-                                                            type="submit">Tambah</button><button class="btn btn-outline-primary"
-                                                            type="button" data-bs-dismiss="modal">Cancel</button></div>
+                                                            type="submit">Tambah</button><button
+                                                            class="btn btn-outline-primary" type="button"
+                                                            data-bs-dismiss="modal">Cancel</button></div>
                                                 </div>
                                             </form>
                                         </div>
@@ -214,20 +222,9 @@
                                                     <span class="fas fa-ellipsis-h fs--2 text-white"></span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end py-2">
-                                                    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ $papernotes->id }}">Launch basic modal</button>
-                                                    <div class="modal fade" id="editModal{{ $papernotes->id }}" tabindex="-1" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs--1"></span></button>
-                                                                </div>
-                                                            <div class="modal-body">
-                                                                <p class="text-700 lh-lg mb-0">This is a static modal example (meaning its position and display have been overridden). Included are the modal header, modal body (required for padding), and modal footer (optional). </p>
-                                                            </div>
-                                                                <div class="modal-footer"><button class="btn btn-primary" type="button">Okay</button><button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <button class="dropdown-item text-primary" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editModal{{ $papernotes->id }}">Edit</button>
                                                     <div class="dropdown-divider"></div>
                                                     <form action="{{ route('papernote.destroy', $papernotes->id) }}"
                                                         method="POST" class="hapus-form">
@@ -237,20 +234,99 @@
                                                             class="dropdown-item text-danger hapus">Hapus</button>
                                                     </form>
                                                 </div>
+                                                <div class="modal fade" id="editModal{{ $papernotes->id }}"
+                                                    tabindex="-1" style="display: none;" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <form action="{{ route('papernote.update', $papernotes->id) }}"
+                                                            method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                                        Catatan</h5>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label"
+                                                                            for="exampleFormControlInput">Judul
+                                                                            Catatan</label>
+                                                                        <input class="form-control"
+                                                                            id="exampleFormControlInput" type="text"
+                                                                            value="{{ old('name', $papernotes->judul) }}"
+                                                                            name="judul"
+                                                                            placeholder="Masukkan Judul Catatan">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label" for="customFile">Gambar
+                                                                            (opsional)</label>
+                                                                        <div id="imagePreview"></div>
+                                                                        <div class="d-flex align-items-center flex-column">
+                                                                            <input
+                                                                                class="form-control @error('gambar') is-invalid @enderror"
+                                                                                type="file" name="gambar"
+                                                                                id="formFile2">
+                                                                            @if ($papernotes->gambar && $papernotes->gambar !== 'mynote.png')
+                                                                                <img class="card-img-top" id="image-preview2"
+                                                                                    src="{{ asset('storage/papernote/' . $papernotes->gambar) }}"
+                                                                                    style="object-fit: cover; height: 200px;">
+                                                                            @else
+                                                                                <img class="card-img-top" id="image-preview2"
+                                                                                    src="{{ asset('assets/img/products/details/mynote.png') }}"
+                                                                                    style="object-fit: cover; height: 200px;">
+                                                                            @endif
+                                                                            @error('gambar')
+                                                                                <div class="invalid-feedback">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror
+                                                                        </div>
+                                                                        <script>
+                                                                            document.getElementById('formFile2').addEventListener('change', function(e) {
+                                                                                const file = e.target.files[0];
+                                                                                const reader = new FileReader();
+                                                                                reader.onload = function(e) {
+                                                                                    document.getElementById('image-preview2').src = e.target.result;
+                                                                                    document.getElementById('image-preview2').style.display = 'block';
+                                                                                }
+                                                                                reader.readAsDataURL(file);
+                                                                            });
+                                                                        </script>
+                                                                    </div>
+                                                                    <div class="mb-0">
+                                                                        <label class="form-label"
+                                                                            for="exampleTextarea">Isi Catatan
+                                                                        </label>
+                                                                        <textarea class="form-control" id="exampleTextarea" rows="3" name="isi">{{ old('isi', $papernotes->isi) }}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer"><button class="btn btn-primary"
+                                                                        type="submit">Tambah</button><button
+                                                                        class="btn btn-outline-primary" type="button"
+                                                                        data-bs-dismiss="modal">Cancel</button></div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal{{ $papernotes->id }}">
-                                    @if ($papernotes->gambar && $papernotes->gambar !== 'mynote.png')
-                                        <img class="card-img-top" src="{{ asset('storage/papernote/' . $papernotes->gambar) }}" style="object-fit: cover; height: 200px;">
-                                    @else
-                                        <img class="card-img-top" src="{{ asset('assets/img/products/details/mynote.png') }}" style="object-fit: cover; height: 200px;">
-                                    @endif
+                                    <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#modal{{ $papernotes->id }}">
+                                        @if ($papernotes->gambar && $papernotes->gambar !== 'mynote.png')
+                                            <img class="card-img-top"
+                                                src="{{ asset('storage/papernote/' . $papernotes->gambar) }}"
+                                                style="object-fit: cover; height: 200px;">
+                                        @else
+                                            <img class="card-img-top"
+                                                src="{{ asset('assets/img/products/details/mynote.png') }}"
+                                                style="object-fit: cover; height: 200px;">
+                                        @endif
                                     </a>
                                     <div class="card-footer">
                                         <div class="d-flex align-items-center mb-1">
-                                            <h3 class="text-1100 mb-0">
-                                                {{ $papernotes->judul}}</h3>
+                                            <h3 class="text-1100 mb-0 room-name">
+                                                {{ $papernotes->judul }}</h3>
                                             <div class="flex-grow-1"></div>
                                         </div>
                                     </div>
@@ -263,16 +339,17 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modal{{ $papernotes->id }}Label">
-                                                {{ $papernotes->nama_kamar }}</h5>
+                                                {{ $papernotes->judul }}</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Kategori:
-                                                {{ $papernotes->kategori ? $papernotes->kategori->nama_kategori : 'Tidak Ada Kategori' }}
+                                            <p>
+                                                {{ $papernotes->isi }}
                                             </p>
-                                            <p>Deskripsi:
-                                                {{ strip_tags(Str::limit($papernotes->deskripsi, 10, $end = '...')) }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <p>Dibuat pada {{ date('d F Y, H:i', strtotime($papernotes->created_at)) }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -42,9 +42,7 @@ Route::middleware([RedirectMiddleware::class])->group(function () {
 
 Route::controller(PaperNoteController::class)->prefix('papernote')->group(function () {
     Route::get('/', 'index')->name('papernote');
-    Route::get('/create', 'create')->name('papernote.create');
     Route::post('/store', 'store')->name('papernote.store');
-    Route::get('/edit/{id}', 'edit')->name('papernote.edit');
     Route::put('/edit/{id}', 'update')->name('papernote.update');
     Route::delete('destroy/{id}', 'destroy')->name('papernote.destroy');
 });
