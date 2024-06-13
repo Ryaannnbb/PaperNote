@@ -120,7 +120,7 @@
             class="toggle-line"></span></span></button>
       <a class="navbar-brand me-1 me-sm-3" href="#">
         <div class="d-flex align-items-center">
-          <div class="d-flex align-items-center"><img src="{{ asset('assets/img/hotel10.png') }}" alt="phoenix"
+          <div class="d-flex align-items-center"><img src="{{ asset('assets/img/icon.png') }}" alt="phoenix"
               width="27" />
             <p class="logo-text ms-2 d-none d-sm-block">Papernote</p>
           </div>
@@ -453,9 +453,9 @@
             <div class="card-body p-0">
               <div class="text-center pt-4 pb-3">
                 <div class="avatar avatar-xl">
-                  <img class="rounded-circle" src="{{ asset('assets/img/hotel10.png') }}" alt="" />
+                  <img class="rounded-circle" src="{{ asset('assets/img/icon.png') }}" alt="" />
                 </div>
-                <h6 class="mt-2 text-black">Admin</h6>
+                <h6 class="mt-2 text-black">User</h6>
               </div>
             </div>
             <div class="card-footer p-3 border-top">
